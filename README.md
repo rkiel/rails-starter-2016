@@ -1,3 +1,5 @@
+#### Getting started
+
 Fire up vagrant
 
     vagrant up
@@ -32,9 +34,11 @@ Commit changes
 
     git commit -m "rails new"
 
+Clean up Gemfile
+
     cp Gemfile /tmp/Gemfile
     grep -v ^\\s*# /tmp/Gemfile > Gemfile
-    
+
 Add a JS runtime
 
     echo "gem 'therubyracer', platforms: :ruby" >> Gemfile
@@ -89,3 +93,29 @@ Commit changes
 
     git add Gemfile*
     git commit -m "make Gemfile compatable with Heroku"
+
+#### Deploy to heroku
+
+Login to your Heroku account
+
+    heroku auth:login
+
+Create a new project
+
+    heroku create
+
+Set your secret key
+
+    heroku config:set SECRET_KEY_BASE=`rake secret`
+    heroku config:get SECRET_KEY_BASE
+
+Push your code to Heroku
+
+    git push heroku master
+
+Run your migrations
+
+    heroku run rake db:migrate
+
+
+[https://aqueous-brushlands-77503.herokuapp.com](https://aqueous-brushlands-77503.herokuapp.com)
